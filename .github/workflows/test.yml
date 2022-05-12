@@ -1,6 +1,10 @@
 name: test
 
-on: workflow_dispatch
+on:
+    push:
+        branches:
+            - main
+    pull_request:
 
 env:
   FOUNDRY_PROFILE: ci
@@ -22,13 +26,11 @@ jobs:
         with:
           version: nightly
 
-      - name: Run Forge build
-        run: |
-          forge --version
-          forge build --sizes
-        id: build
+      - name: Install Dependencies
+        run: make install
 
-      - name: Run Forge tests
-        run: |
-          forge test -vvv
-        id: test
+      - name: Build contracts
+        run: make build
+
+      - name: Run tests
+        run: make test

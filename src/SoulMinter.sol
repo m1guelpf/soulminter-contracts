@@ -74,13 +74,13 @@ contract SoulMinter {
             interfaceId == 0x5b5e139f; // ERC165 Interface ID for ERC721Metadata
     }
 
-    function mint(address to, string calldata ipfsHash) public {
+    function mint(address to, string calldata metaURI) public {
         unchecked {
             balanceOf[to]++;
         }
 
         ownerOf[nextTokenId] = to;
-        tokenURI[nextTokenId] = string.concat("ipfs://", ipfsHash);
+        tokenURI[nextTokenId] = metaURI;
 
         emit Transfer(address(0), to, nextTokenId++);
     }

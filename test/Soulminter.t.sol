@@ -35,7 +35,7 @@ contract ContractTest is Test {
 
         assertEq(minter.ownerOf(1), address(user));
         assertEq(minter.balanceOf(address(user)), 1);
-        assertEq(minter.tokenURI(1), "ipfs://test");
+        assertEq(minter.tokenURI(1), "test");
     }
 
     function testCannotTransfer() public {
